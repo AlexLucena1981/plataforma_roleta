@@ -19,8 +19,6 @@ urlpatterns = [
     path('api/user/', include('core.urls')),
     path('api/webhook/mercadopago/', MercadoPagoWebhookView.as_view(), name='mp-webhook'),
 
-    # ADICIONE ESTA ROTA TEMPORÁRIA E SECRETA
-    path('criar-admin-agora-12345/', core_views.criar_superusuario_temporario, name='criar-admin-temp'),
 ]
 
     
