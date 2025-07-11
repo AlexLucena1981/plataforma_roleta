@@ -138,13 +138,3 @@ class MercadoPagoWebhookView(APIView):
             print(f"!!! ERRO AO PROCESSAR WEBHOOK: {e}")
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-def criar_superusuario_temporario(request):
-    # Verifique se o usuário já não existe
-    if User.objects.filter(username='admin').exists():
-        return HttpResponse("O superusuário 'admin' já existe.")
-    
-    # Crie o superusuário com os dados desejados
-    # IMPORTANTE: Use uma senha forte e troque-a depois!
-    User.objects.create_superuser('alexandre.lucena', 'alexandre.lucena@gmail.com', 'Al32246391@')
-    
-    return HttpResponse("Superusuário 'admin' criado com sucesso! Agora você pode deletar esta URL e a view.")
