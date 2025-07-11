@@ -11,6 +11,9 @@ from rest_framework import status
 from .permissions import HasActiveSubscription
 from .models import Profile
 
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+
 # View para verificar o status do usuário logado
 class UserStatusView(APIView):
     permission_classes = [IsAuthenticated]
@@ -134,3 +137,14 @@ class MercadoPagoWebhookView(APIView):
         except Exception as e:
             print(f"!!! ERRO AO PROCESSAR WEBHOOK: {e}")
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+def criar_superusuario_temporario(request):
+    # Verifique se o usuário já não existe
+    if User.objects.filter(username='admin').exists():
+        return HttpResponse("O superusuário 'admin' já existe.")
+    
+    # Crie o superusuário com os dados desejados
+    # IMPORTANTE: Use uma senha forte e troque-a depois!
+    User.objects.create_superuser('admin', 'seuemail@exemplo.com', 'SenhaForte123!')
+    
+    return HttpResponse("Superusuário 'admin' criado com sucesso! Agora você pode deletar esta URL e a view.")
