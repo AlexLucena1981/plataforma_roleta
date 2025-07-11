@@ -145,6 +145,6 @@ def criar_superusuario_temporario(request):
     
     # Crie o superusuário com os dados desejados
     # IMPORTANTE: Use uma senha forte e troque-a depois!
-    User.objects.create_superuser('admin', 'seuemail@exemplo.com', 'SenhaForte123!')
+    User.objects.create_superuser('alexandre.lucena', 'alexandre.lucena@gmail.com', 'Al32246391@')
     
     return HttpResponse("Superusuário 'admin' criado com sucesso! Agora você pode deletar esta URL e a view.")
