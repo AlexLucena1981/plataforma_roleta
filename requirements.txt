@@ -5,6 +5,7 @@ django-cors-headers==4.7.0
 djangorestframework
 djangorestframework-simplejwt
 gunicorn==23.0.0
+mercadopago
 packaging==25.0
 psycopg2-binary
 python-dotenv==1.1.1
